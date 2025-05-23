@@ -3,101 +3,71 @@
 /*! \mainpage Project Documentation
 
 \section intro_sec Introduction
-This documentation provides an overview of the project's structure and functionality.
-It includes diagrams and descriptions of the main modules, services, routes, and controllers.
+This documentation provides an overview of the project structure, modules, and their interactions.
 
-\section project_structure Project Structure
+\section module_diagram Module Diagram
 
-This project is structured with clear separation of concerns, using a modular approach to enhance maintainability and scalability.
-The core components are:
-
-- \b Modules: Represent distinct features or sections of the application (e.g., authentication, user management).
-- \b Services: Encapsulate business logic and data access, providing reusable functionalities.
-- \b Routes: Define the API endpoints and their corresponding handlers.
-- \b Controllers: Manage incoming requests, orchestrate services, and return responses.
-
-\subsection interaction_flow Interaction Flow
-
-The following diagram illustrates the interaction flow between different modules and services:
+The following diagram illustrates the relationships between the key modules and components in the project.
 
 \dot
-digraph G {
-    rankdir=LR;
-    node [shape=box];
+digraph ModuleDiagram {
+  rankdir=LR;
+  node [shape=box];
 
-    subgraph cluster_modules {
-        label = "Modules";
-        style = "filled";
-        color = lightblue;
+  subgraph cluster_com_bookstore {
+    label = "com.bookstore";
+    style = "dashed";
 
-        com_bookstore [label="com.bookstore"];
+    BookstoreApplication [label="BookstoreApplication", URL="classcom_1_1bookstore_1_1_bookstore_application.html"];
+
+    subgraph cluster_com_bookstore_controller {
+      label = "controller";
+      style = "dashed";
+
+      HomeController [label="HomeController", URL="classcom_1_1bookstore_1_1controller_1_1_home_controller.html"];
     }
 
-    subgraph cluster_controllers {
-        label = "Controllers";
-        style = "filled";
-        color = lightgreen;
+  }
 
-        HomeController [label="HomeController"];
-    }
-
-    subgraph cluster_application {
-        label = "Application";
-        style = "filled";
-        color = lightyellow;
-
-        BookstoreApplication [label="BookstoreApplication"];
-    }
-
-    com_bookstore -> BookstoreApplication [label="Uses"];
-    com_bookstore -> HomeController [label="Contains"];
-    HomeController -> BookstoreApplication [label="Uses"];
-
-    node [shape=ellipse];
-
-    // API_Request [label="API Request"];
-    // API_Response [label="API Response"];
-
-    // API_Request -> HomeController [label="Routes to"];
-    // HomeController -> API_Response [label="Returns"];
+  HomeController -> BookstoreApplication [label="Uses"];
 }
 \enddot
 
-\subsection diagram_elements Diagram Elements Explained
+\section interaction_flow Interaction Flow
 
-- \b Modules: Represented as blue boxes, these are self-contained units of functionality.
-- \b Services: Not explicitly shown in this simplified diagram but would be included within modules, handling data access and business logic.
-- \b Routes: The diagram shows which controller an API request routes to.
-- \b Controllers: Depicted as green boxes, manage request handling and response generation.
-- \b Application: The main application represented as yellow box.
+This section describes the typical interaction flow within the application.
 
-\subsection es6_commonjs ES6 Imports and CommonJS Requires
+\subsection flow_description Description
 
-This project supports both ES6 imports (`import ... from ...`) and CommonJS requires (`require(...)`). The choice depends on the specific module and its context.  Most modules will use ES6, but older modules may use CommonJS.  Doxygen configuration needs to be setup to properly handle both.
+1.  The `BookstoreApplication` initializes and starts the application.
+2.  The `HomeController` handles incoming requests from users.
 
-\section files Included Files
-- annotated_dup.js
-- classcom_1_1bookstore_1_1controller_1_1_home_controller.js
-- clipboard.js
-- cookie.js
-- dir_0960380b67802326829b80fdd669c080.js
-- dir_105728e7a0587a1ec6e24567ba606855.js
-- dir_15f08877e41e2869b6e5b1c5ead7f604.js
-- dir_1c0c5d27b46c6b563b8da3962a3dbc15.js
-- dir_22bf2e29c688f65e44fcb35602e007ab.js
-- dir_2c4eb09875e8e2803e36c791a42f0b45.js
-- dir_2e2cf961d4924b6384babb753794eb6a.js
-- dir_3a594d39385fd324c7a986be0fa100fc.js
-- dir_559004cf293a0dab7dbc8b3429cf516d.js
-- dir_57f72b5a68868f94b829f3bc2c7260a4.js
-- dir_6c7f5cc01262d39232ed653f1cc16efb.js
-- dir_8c2508a687c1a639c10b464106fd5bd9.js
-- dir_a3e26c4374f3665c93f968b36c8ff8cf.js
-- dir_b141f62dd48f12a902effdf949a7868b.js
-- dir_e83028d4cffdcbdae21b2e004bd8695b.js
-- dir_f7157495a3c5e25b42899c50ce6bbc13.js
-- dir_fb96bdcb011eaf3fcba0621644ffcb1d.js
-- dynsections.js
-*/
+\subsection element_explanation Diagram Element Explanation
+
+-   **BookstoreApplication**: The main application class responsible for initializing and running the bookstore application.  It's the entry point and orchestrates the other components.
+-   **HomeController**: A controller class that handles requests related to the home page.  It processes requests and returns appropriate responses.
+
+\section javascript_modules JavaScript Modules
+
+The following javascript modules are used in the frontend:
+
+\subsection annotated_dup_js annotated_dup.js
+This module defines a JavaScript array called `annotated_dup`. This array is used to store data that maps namespaces and classes to their corresponding HTML documentation pages. This helps with generating table of contents.
+
+\subsection classcom_bookstore_controller_home_controller_js classcom_bookstore_controller_home_controller.js
+This module defines a JavaScript array called `classcom_1_1bookstore_1_1controller_1_1_home_controller`. This array contains a `home` function that is likely used to handle requests related to the home page, and contains the URL of the `HomeController` class.
+
+\subsection clipboard_js clipboard.js
+This module implements a "copy to clipboard" feature for code snippets. It utilizes the `navigator.clipboard` API to copy the content of code blocks when a user clicks the clipboard icon.
+
+\subsection cookie_js cookie.js
+This module provides utility functions for reading, writing, and erasing cookies. It includes functions for setting cookies, retrieving cookie values, and removing cookies.  It handles both localStorage/sessionStorage (for Chrome) and standard document.cookie for other browsers.
+
+\subsection dir_*.js Directory Listing Modules
+These modules contain JavaScript arrays that store directory structures and file paths within the project. They are automatically generated.
+
+\subsection dynsections_js dynsections.js
+This module provides functionality for dynamically toggling the visibility of sections on a web page.
+ */
 ```
 */
